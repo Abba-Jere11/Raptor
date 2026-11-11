@@ -1,0 +1,46 @@
+export const routes = {
+  home: "/",
+  inventory: "/inventory",
+  vehicle: (slug: string) => `/inventory/${slug}`,
+  about: "/about",
+  guides: "/guides",
+  guide: (slug: string) => `/guides/${slug}`,
+  faqs: "/faqs",
+  contact: "/contact",
+  legal: "/legal",
+  prototype: "/prototype",
+  signIn: "/sign-in",
+  twoStep: "/sign-in/two-step",
+  reset: "/sign-in/reset",
+  forbidden: "/forbidden",
+  admin: {
+    today: "/admin",
+    vehicles: "/admin/vehicles",
+    vehicleNew: "/admin/vehicles/new",
+    vehicle: (id: string) => `/admin/vehicles/${id}`,
+    media: "/admin/media",
+    staff: "/admin/staff",
+    website: "/admin/website",
+    destinations: "/admin/destinations",
+  },
+  ceo: {
+    home: "/ceo",
+    approvals: "/ceo/approvals",
+    vehicles: "/ceo/vehicles",
+    vehicle: (id: string) => `/ceo/vehicles/${id}`,
+    staff: "/ceo/staff",
+    audit: "/ceo/audit",
+    website: "/ceo/website",
+    enquiries: "/ceo/enquiries",
+    enquiry: (id: string) => `/ceo/enquiries/${id}`,
+    quotes: "/ceo/quotes",
+    quote: (id: string) => `/ceo/quotes/${id}`,
+    destinations: "/ceo/destinations",
+    templates: "/ceo/templates",
+    template: (key: string) => `/ceo/templates/${key}`,
+  },
+} as const;
+
+export function homeForRole(role: "ceo" | "administrator" | "sales" | "finance") {
+  return role === "administrator" ? routes.admin.today : routes.ceo.home;
+}
